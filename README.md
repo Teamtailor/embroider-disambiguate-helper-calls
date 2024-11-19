@@ -1,57 +1,27 @@
-# class-based-helpers-disambiguation
+# Helpers disambiguation in Embroider
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+A minimal repro for the issue of helpers breaking when called in the unambiguous way:
 
-## Prerequisites
+`{{(translate)}}`
 
-You will need the following things properly installed on your computer.
+It turns out that no matter what kind of helper you have (class-based, functional or plain-function), they all break when called as above.
 
-- [Git](https://git-scm.com/)
-- [Node.js](https://nodejs.org/)
-- [pnpm](https://pnpm.io/)
-- [Ember CLI](https://cli.emberjs.com/release/)
-- [Google Chrome](https://google.com/chrome/)
+**What matters is that `staticHelpers` be set to `false` in the config.**
 
-## Installation
+If it is, it breaks with the following:
 
-- `git clone <repository-url>` this repository
-- `cd class-based-helpers-disambiguation`
-- `pnpm install`
+```
+Uncaught TypeError: func is not a function
+    at Compilers.compile (opcode-compiler.js:417:1)
+    at expr (opcode-compiler.js:587:1)
+    at opcode-compiler.js:1799:1
+    at SwitchCases (opcode-compiler.js:943:1)
+    at opcode-compiler.js:1798:1
+    at Compilers.compile (opcode-compiler.js:417:1)
+    at compileStatements (opcode-compiler.js:2070:1)
+    at maybeCompile (opcode-compiler.js:2049:1)
+    at CompilableTemplateImpl.compile (opcode-compiler.js:2032:1)
+    at Object.evaluate (runtime.js:2973:1)
+```
 
-## Running / Development
-
-- `pnpm start`
-- Visit your app at [http://localhost:4200](http://localhost:4200).
-- Visit your tests at [http://localhost:4200/tests](http://localhost:4200/tests).
-
-### Code Generators
-
-Make use of the many generators for code, try `ember help generate` for more details
-
-### Running Tests
-
-- `pnpm test`
-- `pnpm test:ember --server`
-
-### Linting
-
-- `pnpm lint`
-- `pnpm lint:fix`
-
-### Building
-
-- `pnpm ember build` (development)
-- `pnpm build` (production)
-
-### Deploying
-
-Specify what it takes to deploy your app.
-
-## Further Reading / Useful Links
-
-- [ember.js](https://emberjs.com/)
-- [ember-cli](https://cli.emberjs.com/release/)
-- Development Browser Extensions
-  - [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  - [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+If the `staticHelpers` is set to `true`, it works fine.
