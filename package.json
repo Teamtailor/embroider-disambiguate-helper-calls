@@ -83,5 +83,10 @@
   },
   "ember": {
     "edition": "octane"
+  },
+  "pnpm": {
+    "overrides": {
+      "body-parser@<1.20.6": "1.20.6"
+    }
   }
 }
