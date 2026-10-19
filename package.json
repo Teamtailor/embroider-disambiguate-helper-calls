@@ -83,5 +83,13 @@
   },
   "ember": {
     "edition": "octane"
+  },
+  "pnpm": {
+    "overrides": {
+      "decode-uri-component@<0.5.0": "0.5.0"
+    },
+    "patchedDependencies": {
+      "decode-uri-component@0.5.0": "patches/decode-uri-component@0.5.0.patch"
+    }
   }
 }

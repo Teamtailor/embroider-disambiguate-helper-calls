@@ -4,6 +4,14 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  decode-uri-component@<0.5.0: 0.5.0
+
+patchedDependencies:
+  decode-uri-component@0.5.0:
+    hash: bdgtmg46kzhp6tyls6pdz4c5fy
+    path: patches/decode-uri-component@0.5.0.patch
+
 importers:
 
   .:
@@ -2485,9 +2493,9 @@ packages:
   decimal.js@10.4.3:
     resolution: {integrity: sha512-VBBaLc1MgL5XpzgIP7ny5Z6Nx3UrRkIViUkPUdtl9aya5amy3De1gsUUSB1g3+3sExYNjCAsAznmukyxCb1GRA==}
 
-  decode-uri-component@0.2.2:
-    resolution: {integrity: sha512-FqUYQ+8o158GyGTrMFJms9qh3CqTKvAqgqsTnkLI8sKu0028orqBhxNMFkFen0zGyg6epACD32pjVk58ngIErQ==}
-    engines: {node: '>=0.10'}
+  decode-uri-component@0.5.0:
+    resolution: {integrity: sha512-1BiQVoK8C9gUbQU6NzAtO/tkz2qOFpEObMWpcFvhx4fYnj4Oc5yzaJN/LD36ihkVUdXyh5ZekzX+yM+ty/SrPg==}
+    engines: {node: '>=14.16'}
 
   decorator-transforms@2.3.0:
     resolution: {integrity: sha512-jo8c1ss9yFPudHuYYcrJ9jpkDZIoi+lOGvt+Uyp9B+dz32i50icRMx9Bfa8hEt7TnX1FyKWKkjV+cUdT/ep2kA==}
@@ -9062,7 +9070,7 @@ snapshots:
 
   decimal.js@10.4.3: {}
 
-  decode-uri-component@0.2.2: {}
+  decode-uri-component@0.5.0(patch_hash=bdgtmg46kzhp6tyls6pdz4c5fy): {}
 
   decorator-transforms@2.3.0(@babel/core@7.26.0):
     dependencies:
@@ -12730,7 +12738,7 @@ snapshots:
   source-map-resolve@0.5.3:
     dependencies:
       atob: 2.1.2
-      decode-uri-component: 0.2.2
+      decode-uri-component: 0.5.0(patch_hash=bdgtmg46kzhp6tyls6pdz4c5fy)
       resolve-url: 0.2.1
       source-map-url: 0.4.1
       urix: 0.1.0
